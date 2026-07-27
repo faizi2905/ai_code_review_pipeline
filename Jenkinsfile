@@ -6,7 +6,7 @@ pipeline{
         IMAGE_TAG = "${BUILD_NUMBER}" 
         CONTAINER_NAME = "ai-review-container"
         PORT = "8080"
-        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
+        DOCKER = "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"
     }
 
     tools {
@@ -41,17 +41,17 @@ pipeline{
             
         stage('Build Docker Image') {
             steps {
-                bat "docker build -t ${APP_NAME}:${IMAGE_TAG} -t ${APP_NAME}:latest ."
+                bat "\"${DOCKER}\"  build -t ${APP_NAME}:${IMAGE_TAG} -t ${APP_NAME}:latest ."
                 }
             }
             
         stage('Run Docker Container') {
             steps {
                 script{
-                    bat "docker stop ${CONTAINER_NAME} || true"
-                    bat "docker rm ${CONTAINER_NAME} || true"
+                    bat "\"${DOCKER}\"  stop ${CONTAINER_NAME} || true"
+                    bat "\"${DOCKER}\"  rm ${CONTAINER_NAME} || true"
 
-                    bat "docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
+                    bat "\"${DOCKER}\"  run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
                 }
                 }
             }
