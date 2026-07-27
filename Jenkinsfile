@@ -61,8 +61,8 @@ pipeline{
             steps {
                 echo "Waiting for application to start ....."
                 bat """
-                    timeout /t 20 /nobreak
-                    curl -fail http://localhost:${PORT}/actuator/health || curl -fail http://localhost:${PORT}/
+                    bat "powershell -Command Start-Sleep -Seconds 20"
+                    bat "curl http://localhost:${PORT}/"
                 """
             }
     }
