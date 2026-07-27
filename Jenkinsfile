@@ -6,6 +6,7 @@ pipeline{
         IMAGE_TAG = "${BUILD_NUMBER}" 
         CONTAINER_NAME = "ai-review-container"
         PORT = "8081"
+        CONTAINER_PORT = "8080"
         DOCKER = "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"
     }
 
@@ -51,7 +52,7 @@ pipeline{
                     bat "\"${DOCKER}\"  stop ${CONTAINER_NAME} || exit /b 0"
                     bat "\"${DOCKER}\"  rm ${CONTAINER_NAME} || exit /b 0"
 
-                    bat "\"${DOCKER}\"  run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
+                    bat "\"${DOCKER}\"  run -d -p ${PORT}:${CONTAINER_PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
                 }
                 }
             }
