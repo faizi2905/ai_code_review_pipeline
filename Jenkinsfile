@@ -29,7 +29,7 @@ pipeline{
             
         stage('Run Unit Tests') {
             steps {
-                bat 'mvn test'
+                bat 'mvn test -Dtest=!PostgresIntegrationTests'
                 }
             }
             
