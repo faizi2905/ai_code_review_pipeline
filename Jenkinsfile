@@ -19,6 +19,13 @@ pipeline{
                 checkout scm
                 }
             }
+
+        stage('Check Docker') {
+            steps {
+                bat 'where docker'
+                bat '"C:\\Users\\chikk\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
+            }
+        }
             
             
         stage('Build') {
