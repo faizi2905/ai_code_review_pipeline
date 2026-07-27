@@ -61,7 +61,7 @@ pipeline{
             steps {
                 echo "Waiting for application to start ....."
                 bat """
-                    sleep 10
+                    timeout /t 20 /nobreak
                     curl -fail http://localhost:${PORT}/actuator/health || curl -fail http://localhost:${PORT}/
                 """
             }
