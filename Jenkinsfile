@@ -48,8 +48,8 @@ pipeline{
         stage('Run Docker Container') {
             steps {
                 script{
-                    bat "\"${DOCKER}\"  stop ${CONTAINER_NAME} || true"
-                    bat "\"${DOCKER}\"  rm ${CONTAINER_NAME} || true"
+                    bat "\"${DOCKER}\"  stop ${CONTAINER_NAME} || exit /b 0"
+                    bat "\"${DOCKER}\"  rm ${CONTAINER_NAME} || exit /b 0"
 
                     bat "\"${DOCKER}\"  run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
                 }
