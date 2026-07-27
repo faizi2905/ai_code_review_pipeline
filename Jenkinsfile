@@ -6,6 +6,7 @@ pipeline{
         IMAGE_TAG = "${BUILD_NUMBER}" 
         CONTAINER_NAME = "ai-review-container"
         PORT = "8080"
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
     }
 
     tools {
@@ -19,13 +20,6 @@ pipeline{
                 checkout scm
                 }
             }
-
-        stage('Check Docker Folder') {
-            steps {
-                bat 'dir "C:\\Program Files\\Docker\\Docker\\resources\\bin"'
-            }
-        }
-            
             
         stage('Build') {
             steps {
