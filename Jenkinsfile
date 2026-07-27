@@ -22,7 +22,7 @@ pipeline{
 
         stage('Check Docker') {
             steps {
-                bat 'where docker'
+                bat 'echo Checking Docker...'
                 bat '"C:\\Users\\chikk\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
             }
         }
