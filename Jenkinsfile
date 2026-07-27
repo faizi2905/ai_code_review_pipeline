@@ -5,7 +5,7 @@ pipeline{
         APP_NAME = "ai-review-app"
         IMAGE_TAG = "${BUILD_NUMBER}" 
         CONTAINER_NAME = "ai-review-container"
-        PORT = "8080"
+        PORT = "8081"
         DOCKER = "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"
     }
 
