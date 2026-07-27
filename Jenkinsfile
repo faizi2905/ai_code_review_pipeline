@@ -23,35 +23,35 @@ pipeline{
             
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
                 }
             }
             
         stage('Run Unit Tests') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
                 }
             }
             
         stage('Package Application') {
             steps {
-                sh 'mvn package -DskipTests'
+                bat 'mvn package -DskipTests'
                 }
             }
             
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${APP_NAME}:${IMAGE_TAG} -t ${APP_NAME}:latest ."
+                bat "docker build -t ${APP_NAME}:${IMAGE_TAG} -t ${APP_NAME}:latest ."
                 }
             }
             
         stage('Run Docker Container') {
             steps {
                 script{
-                    sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
+                    bat "docker stop ${CONTAINER_NAME} || true"
+                    bat "docker rm ${CONTAINER_NAME} || true"
 
-                    sh "docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
+                    bat "docker run -d -p ${PORT}:${PORT} --name ${CONTAINER_NAME} ${APP_NAME}:latest"
                 }
                 }
             }
@@ -59,7 +59,7 @@ pipeline{
         stage('Health Check') {
             steps {
                 echo "Waiting for application to start ....."
-                sh """
+                bat """
                     sleep 10
                     curl -fail http://localhost:${PORT}/actuator/health || curl -fail http://localhost:${PORT}/
                 """
