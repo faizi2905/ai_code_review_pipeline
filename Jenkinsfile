@@ -20,10 +20,9 @@ pipeline{
                 }
             }
 
-        stage('Check Docker') {
+        stage('Check Docker Folder') {
             steps {
-                bat 'echo Checking Docker...'
-                bat '"C:\\Users\\chikk\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
+                bat 'dir "C:\\Program Files\\Docker\\Docker\\resources\\bin"'
             }
         }
             
