@@ -60,10 +60,9 @@ pipeline{
         stage('Health Check') {
             steps {
                 echo "Waiting for application to start ....."
-                bat """
-                    bat "powershell -Command Start-Sleep -Seconds 20"
-                    bat "curl http://localhost:${PORT}/"
-                """
+
+                bat 'powershell -Command "Start-Sleep -Seconds 20"'
+                bat "curl http://localhost:${PORT}/"
             }
     }
     }
